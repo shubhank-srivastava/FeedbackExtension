@@ -1,0 +1,30 @@
+<h1>Feedback Entries</h1>
+<table border="1" width="80%" align="center">
+    <tr>	
+	<th>ID</th>
+    <th>Order ID</th>
+	<th>Date/Time</th>
+<?php
+$options = Mage::getModel('shubhank_feedback/type')->getOptions();
+for ($i=0; $i < count($options); $i++) { 
+ if(!empty($options[$i]['options']))
+  echo "<th>",$options[$i]['options'],"</th>";
+}
+?>	
+	<th>Comments</th>
+	</tr>
+<?php
+    $results = Mage::getModel('shubhank_feedback/type')->getFeedbacks();
+    for ($i=0; $i < count($results); $i++) { 
+    	echo "<tr><td>",$results[$i]['type_id'],"</td>";
+        echo "<td>",$results[$i]['orderId'],"</td>";
+    	echo "<td>",$results[$i]['feed_date'],"</td>";
+      for ($j=1; $j < 11; $j++) { 
+          if(!empty($options[$j-1]['options']))  
+            echo "<td>",$results[$i]['opt_id_'.$j],"</td>";
+        }	
+       
+    	echo "<td>",$results[$i]['feed'],"</td></tr>";
+    }
+?>
+</table>

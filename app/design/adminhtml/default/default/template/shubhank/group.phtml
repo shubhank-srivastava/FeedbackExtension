@@ -1,0 +1,14 @@
+<h1>Feedback Entries</h1>
+<br>
+<h2>Number of votes for all options:</h2>
+<br>
+<table>
+<?php 
+$options = Mage::getModel('shubhank_feedback/type')->getOptions(); 
+$results = Mage::helper('shubhank_feedback/data')->getFeedbackCounts();
+for ($i=0; $i < count($options); $i++) { 
+    if(!empty($options[$i]['options']))
+        echo "<tr><td><h3>",$options[$i]['options'],"</h3></td><td><h3>: ",$results[$i],"</h3></td></tr>";
+}
+?>
+</table>

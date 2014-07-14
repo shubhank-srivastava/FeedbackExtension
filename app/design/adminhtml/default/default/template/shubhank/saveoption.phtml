@@ -1,0 +1,16 @@
+<?php
+
+			$data=$this->getRequest()->getParams();
+			
+			if(!empty($data)){
+				$result=Mage::getModel('shubhank_feedback/type')->saveOptions($data);
+                if($result==1)
+                    echo "<h3>Saved Successfully.</h3>";
+                else
+                    echo "Some problem ocurred.";
+			}else {
+				throw new Exception("Error Processing Request: Insufficient data provided.");
+			}
+			
+		
+?>

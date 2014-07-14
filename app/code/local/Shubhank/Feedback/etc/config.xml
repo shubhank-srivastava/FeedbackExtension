@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<modules>
+		<Shubhank_Feedback><version>1.0.1</version></Shubhank_Feedback>
+	</modules>
+
+	<global>
+		<models>
+			<shubhank_feedback>
+				<class>Shubhank_Feedback_Model</class>
+				<resourceModel>shubhank_feedback_mysql4</resourceModel>
+			</shubhank_feedback>
+			<shubhank_feedback_mysql4>
+				<class>Shubhank_Feedback_Model_Mysql4</class>
+				<entities>
+					<type>
+						<table>shubhank_feedback_type</table>
+						<table>shubhank_feedback_options</table>
+					</type>
+				</entities>
+			</shubhank_feedback_mysql4>
+		</models>
+		<blocks>
+			<shubhank_feedback>
+				<class>Shubhank_Feedback_Block</class>
+			</shubhank_feedback>
+		</blocks>
+		<helpers>
+			<shubhank_feedback>
+				<class>Shubhank_Feedback_Helper</class>
+			</shubhank_feedback>
+		</helpers>
+		<resources>
+			<shubhank_feedback_setup>
+				<setup>
+					<module>Shubhank_Feedback</module>
+					<class>Shubhank_Feedback_Model_Resource_Setup</class>
+				</setup>
+				<connection>
+					<use>core_setup</use>
+				</connection>
+			</shubhank_feedback_setup>
+			<shubhank_feedback_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</shubhank_feedback_read>
+			<shubhank_feedback_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</shubhank_feedback_write>
+		</resources>
+	</global>
+
+	<frontend>
+		<routers>
+			<shubhank_feedback>
+				<use>standard</use>
+				<args>
+					<module>Shubhank_Feedback</module>
+					<frontName>feedback</frontName>
+				</args>
+			</shubhank_feedback>
+		</routers>
+		
+	</frontend>
+
+	<admin>
+		<routers>
+         <adminhtml>
+             <args>
+                 <modules>
+                        <shubhank_feedback before="Mage_Adminhtml">Shubhank_Feedback_Adminhtml</shubhank_feedback>
+                 </modules>
+             </args>
+             <layout>
+                <updates>
+                    <shubhank_feedback module="shubhank_feedback">
+                        <file>feedback.xml</file>
+                    </shubhank_feedback>
+                </updates>
+            </layout>
+         </adminhtml>
+        </routers>
+	</admin>
+
+    <adminhtml>
+ 
+    
+        <menu>
+             <shubhank_feedback translate="title" module="shubhank_feedback">
+                <title>Feedback</title>
+                <sort_order>20</sort_order>
+                <children>
+                             	
+                    <items translate="title">
+                        <title>View All</title>
+                        <action>adminhtml/feedback/index</action>
+                        <sort_order>1</sort_order>                        
+                    </items>
+                    
+                    <items2 translate="title" module="shubhank_feedback">
+                        <title>View Groups</title>
+                        <action>adminhtml/feedback/group</action>
+                        <sort_order>2</sort_order>                        
+                    </items2>                    
+                    
+                    <items3 translate="title" module="shubhank_feedback">
+                        <title>Edit Options</title>
+                        <action>adminhtml/feedback/option</action>
+                        <sort_order>3</sort_order>                        
+                    </items3>
+                    
+				</children>
+             </shubhank_feedback>
+        </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>                
+                    <shubhank_feedback translate="title" module="shubhank_feedback">
+                        <title>Feedback</title>
+                        <sort_order>1</sort_order>
+                        <children>
+                            <items>
+                                <title>View All</title>
+                            </items>
+                            <items2>
+                                <title>View Groups</title>
+                            </items2>
+                            <items3>
+                                <title>Edit Options</title>
+                            </items3>
+                        </children>
+                    </shubhank_feedback>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+	</adminhtml>    
+</config>
